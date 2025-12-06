@@ -108,15 +108,15 @@ type ChangePasswordRequest struct {
 // ChangePassword changes the user's password
 // Warning: This will reset the frp token and access key
 func (c *Client) ChangePassword(req ChangePasswordRequest) error {
-var resp Response[any]
-err := c.request("POST", "/auth/user/passwordReset", req, &resp)
-if err != nil {
-return err
-}
+	var resp Response[any]
+	err := c.request("POST", "/auth/user/passwordReset", req, &resp)
+	if err != nil {
+		return err
+	}
 
-if resp.Code != 200 {
-return fmt.Errorf("api error: %s (code: %d)", resp.Message, resp.Code)
-}
+	if resp.Code != 200 {
+		return fmt.Errorf("api error: %s (code: %d)", resp.Message, resp.Code)
+	}
 
-return nil
+	return nil
 }
